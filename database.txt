@@ -1,0 +1,2 @@
+create database food_delivery_db;
+use food_delivery_db;

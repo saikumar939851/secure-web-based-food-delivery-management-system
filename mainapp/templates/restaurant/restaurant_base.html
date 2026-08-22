@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+
+/* Sidebar */
+.sidebar {
+    background: linear-gradient(180deg, #ff6a00, #ee0979);
+    min-height: 80vh;
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+}
+
+.sidebar h5 {
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.profile-box {
+    background: rgba(255,255,255,0.15);
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.profile-box i {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.content-area {
+    background: rgba(255,255,255,0.95);
+    border-radius: 20px;
+    padding: 30px;
+    min-height: 80vh;
+}
+
+</style>
+
+<div class="row">
+
+    <!-- Sidebar -->
+    <div class="col-md-3">
+        <div class="sidebar">
+
+            <!-- Profile Section -->
+            <div class="profile-box">
+                <i class="fas fa-store"></i>
+                <h6>{{ request.session.role|title }} Panel</h6>
+                <small>{{ request.session.user_id }}</small>
+				
+            </div>
+
+            <!-- Navigation Links -->
+            <a href="/restaurant_dashboard/">
+                <i class="fas fa-chart-line"></i> Dashboard
+            </a>
+
+            <a href="/add_category/">
+                <i class="fas fa-list"></i> Add Category
+            </a>
+
+            <a href="/add_food/">
+                <i class="fas fa-plus-circle"></i> Add Food
+            </a>
+
+            <a href="/view_orders_restaurant/">
+                <i class="fas fa-box"></i> View Orders
+            </a>
+<a href="/view_feedback_restaurant/">
+    <i class="fas fa-star"></i> View Feedback
+</a>
+            <hr style="border-color:white;">
+
+            <a href="/logout/" style="background:#000;">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-md-9">
+        <div class="content-area">
+
+            {% block restaurant_content %}
+            {% endblock %}
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

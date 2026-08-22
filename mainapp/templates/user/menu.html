@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3 class="text-center mb-4">Menu 🍕</h3>
+
+<div class="row">
+{% for food in foods %}
+<div class="col-md-4 mb-4">
+
+<div class="glass-card text-center">
+
+{% if food.image %}
+<img src="{{ food.image.url }}"
+class="img-fluid rounded mb-3"
+style="height:200px; object-fit:cover;">
+{% else %}
+<img src="/static/images/nofood.png"
+class="img-fluid rounded mb-3"
+style="height:200px; object-fit:cover;">
+{% endif %}
+
+<h5>{{ food.name }}</h5>
+<p>₹ {{ food.price }}</p>
+
+<a href="/add_to_cart/{{ food.id }}/" class="btn btn-danger">
+Add to Cart
+</a>
+
+</div>
+
+</div>
+{% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'restaurant/restaurant_base.html' %}
+
+{% block restaurant_content %}
+
+<h3 class="mb-4">
+<i class="fas fa-chart-line"></i> Restaurant Dashboard
+</h3>
+
+<!-- Profile Card -->
+<div class="row mb-4">
+
+    <div class="col-md-6">
+        <div class="p-4 bg-light rounded shadow-sm">
+            <h5><i class="fas fa-user"></i> Restaurant Name</h5>
+            <p class="fw-bold">{{ restaurant.name }}</p>
+			<h6>{{ request.session.restaurant_name }}</h6>
+<small>{{ request.session.restaurant_email }}</small>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="p-4 bg-light rounded shadow-sm">
+            <h5><i class="fas fa-envelope"></i> Email</h5>
+            <p class="fw-bold">{{ restaurant.email }}</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- Stats -->
+<div class="row mb-4">
+
+    <div class="col-md-4">
+        <div class="p-4 text-center bg-success text-white rounded shadow-sm">
+            <h4>{{ total_foods }}</h4>
+            <p>Total Food Items</p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="p-4 text-center bg-warning text-dark rounded shadow-sm">
+            <h4>{{ foods|length }}</h4>
+            <p>Active Items</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- Food Table -->
+<h5 class="mt-4 mb-3">Your Food Items</h5>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Action</th>
+    </tr>
+
+    {% for food in foods %}
+    <tr>
+        <td>{{ food.name }}</td>
+        <td>₹ {{ food.price }}</td>
+        <td>
+            <a href="/delete_food/{{ food.id }}/" class="btn btn-sm btn-danger">
+                Delete
+            </a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="3" class="text-center">No food items added yet.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

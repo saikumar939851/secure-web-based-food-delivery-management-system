@@ -1,0 +1,48 @@
+{% extends 'user/user_base.html' %}
+{% block user_content %}
+
+<h3 class="mb-4">
+    <i class="fas fa-store"></i> Browse Restaurants
+</h3>
+
+<div class="row">
+
+{% for r in restaurants %}
+<div class="col-md-4 mb-4">
+
+    <div class="card shadow-sm border-0">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5"
+             class="card-img-top"
+             style="height:200px; object-fit:cover;">
+
+        <div class="card-body text-center">
+            <h5>{{ r.name }}</h5>
+            <p>{{ r.email }}</p>
+
+            <div class="d-grid gap-2">
+
+                <!-- View Menu -->
+                <a href="/view_menu/{{ r.id }}/"
+                   class="btn btn-primary">
+                   <i class="fas fa-utensils"></i> View Menu
+                </a>
+
+                <!-- Give Feedback -->
+                <a href="/add_feedback/{{ r.id }}/"
+                   class="btn btn-warning">
+                   <i class="fas fa-star"></i> Give Feedback
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+{% empty %}
+<p>No restaurants available.</p>
+{% endfor %}
+
+</div>
+
+{% endblock %}

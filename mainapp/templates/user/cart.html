@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3 class="mb-4 text-center">Your Cart 🛒</h3>
+
+<div class="glass-card">
+<table class="table">
+<tr>
+<th>Food</th>
+<th>Price</th>
+<th>Action</th>
+</tr>
+
+{% for item in cart %}
+<tr>
+<td>{{ item.food.name }}</td>
+<td>₹ {{ item.food.price }}</td>
+<td>
+<a href="/remove_from_cart/{{ item.id }}/" class="btn btn-sm btn-danger">
+Remove
+</a>
+</td>
+</tr>
+{% endfor %}
+</table>
+
+<h4>Total: ₹ {{ total }}</h4>
+
+<a href="/place_order/" class="btn btn-success mt-3">
+Place Order
+</a>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'restaurant/restaurant_base.html' %}
+
+{% block restaurant_content %}
+
+<h3 class="mb-4">
+    <i class="fas fa-box"></i> Restaurant Orders
+</h3>
+
+<table class="table table-bordered table-striped">
+
+    <tr>
+        <th>Order ID</th>
+        <th>Customer</th>
+        <th>Total Amount</th>
+        <th>Status</th>
+        <th>Update Status</th>
+    </tr>
+
+    {% for order in orders %}
+    <tr>
+        <td>#{{ order.id }}</td>
+        <td>{{ order.user.name }}</td>
+        <td>₹ {{ order.total_amount }}</td>
+        <td>
+            <span class="badge bg-info text-dark">
+                {{ order.status }}
+            </span>
+        </td>
+        <td>
+            <form method="post" action="/update_order_status/{{ order.id }}/">
+                {% csrf_token %}
+                <select name="status" class="form-select form-select-sm mb-2">
+                    <option value="Pending">Pending</option>
+                    <option value="Preparing">Preparing</option>
+                    <option value="Out for Delivery">Out for Delivery</option>
+                    <option value="Delivered">Delivered</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+                <button class="btn btn-sm btn-success w-100">
+                    Update
+                </button>
+            </form>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="5" class="text-center">
+            No orders received yet.
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}

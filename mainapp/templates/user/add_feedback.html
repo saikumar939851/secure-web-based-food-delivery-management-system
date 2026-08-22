@@ -1,0 +1,31 @@
+{% extends 'user/user_base.html' %}
+{% block user_content %}
+
+<h3>Give Feedback to {{ restaurant.name }}</h3>
+
+<form method="post">
+{% csrf_token %}
+
+<div class="mb-3">
+<label>Rating (1-5)</label>
+<select name="rating" class="form-control">
+<option value="5">5 - Excellent</option>
+<option value="4">4 - Good</option>
+<option value="3">3 - Average</option>
+<option value="2">2 - Poor</option>
+<option value="1">1 - Bad</option>
+</select>
+</div>
+
+<div class="mb-3">
+<label>Your Feedback</label>
+<textarea name="message" class="form-control" required></textarea>
+</div>
+
+<button class="btn btn-success w-100">
+Submit Feedback
+</button>
+
+</form>
+
+{% endblock %}

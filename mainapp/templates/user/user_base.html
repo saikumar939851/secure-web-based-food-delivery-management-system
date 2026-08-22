@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+
+.user-sidebar {
+    background: linear-gradient(180deg, #1e3c72, #2a5298);
+    min-height: 80vh;
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+}
+
+.user-sidebar a {
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.user-sidebar a:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.user-profile {
+    background: rgba(255,255,255,0.15);
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.user-content {
+    background: rgba(255,255,255,0.95);
+    padding: 30px;
+    border-radius: 20px;
+    min-height: 80vh;
+}
+
+</style>
+
+<div class="row">
+
+    <!-- Sidebar -->
+    <div class="col-md-3">
+        <div class="user-sidebar">
+
+            <div class="user-profile">
+                <i class="fas fa-user-circle fa-3x"></i>
+                <h6 class="mt-2">{{ request.session.role|title }} Panel</h6>
+            </div>
+
+            <a href="/browse_restaurants/">
+                <i class="fas fa-store"></i> Browse Restaurants
+            </a>
+
+            <a href="/view_cart/">
+                <i class="fas fa-shopping-cart"></i> My Cart
+            </a>
+
+            <a href="/my_orders/">
+                <i class="fas fa-box"></i> My Orders
+            </a>
+
+            <hr style="border-color:white;">
+
+            <a href="/logout/" style="background:#000;">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+
+        </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="col-md-9">
+        <div class="user-content">
+
+            {% block user_content %}
+            {% endblock %}
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

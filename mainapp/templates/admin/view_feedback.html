@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3>All Feedback (Admin View)</h3>
+
+<table class="table table-bordered">
+<tr>
+<th>User</th>
+<th>Restaurant</th>
+<th>Rating</th>
+<th>Message</th>
+<th>Date</th>
+</tr>
+
+{% for f in feedbacks %}
+<tr>
+<td>{{ f.user.name }}</td>
+<td>{{ f.restaurant.name }}</td>
+<td>{{ f.rating }}/5</td>
+<td>{{ f.message }}</td>
+<td>{{ f.created_at }}</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

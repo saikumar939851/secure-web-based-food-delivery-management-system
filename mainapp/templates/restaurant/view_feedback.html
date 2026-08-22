@@ -1,0 +1,28 @@
+{% extends 'restaurant/restaurant_base.html' %}
+{% block restaurant_content %}
+
+<h3>Customer Feedback</h3>
+
+<table class="table table-bordered">
+<tr>
+<th>User</th>
+<th>Rating</th>
+<th>Message</th>
+<th>Date</th>
+</tr>
+
+{% for f in feedbacks %}
+<tr>
+<td>{{ f.user.name }}</td>
+<td>{{ f.rating }}/5</td>
+<td>{{ f.message }}</td>
+<td>{{ f.created_at }}</td>
+</tr>
+{% empty %}
+<tr>
+<td colspan="4" class="text-center">No feedback yet.</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}
